@@ -13,11 +13,11 @@ const ToDoForm = (props) => (
 
       <div className="btn-container">
         <button className="form-btn" type="submit">
-          {!props.editing ? "Add task" : "Edit task"}
+          {!props.editing ? 'Add task' : 'Edit task'}
         </button>
-        
+
         <button className="form-btn" type="button" onFocus={props.onClick}>
-          {!props.editing ? "Clear tasks" : "Cancel"}
+          {!props.editing ? 'Clear tasks' : 'Cancel'}
         </button>
       </div>
     </form>

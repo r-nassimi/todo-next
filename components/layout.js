@@ -1,5 +1,5 @@
-import Head from "next/head";
-import Sidebar from "./sidebar";
+import Head from 'next/head';
+import Sidebar from './sidebar';
 
 const Layout = ({ children }) => (
   <div className="Layout">

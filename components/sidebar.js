@@ -1,5 +1,5 @@
-import Link from "next/link";
-import styles from './sidebar.module.css'
+import Link from 'next/link';
+import styles from './sidebar.module.css';
 
 const Sidebar = () => (
   <nav className={styles.nav}>
@@ -10,7 +10,7 @@ const Sidebar = () => (
     <Link href="/todo">
       <a>To Do</a>
     </Link>
-    
+
     <Link href="/about">
       <a>About</a>
     </Link>

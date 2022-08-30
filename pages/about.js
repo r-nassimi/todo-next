@@ -1,12 +1,12 @@
-import Router from "next/router";
+import Router from 'next/router';
 
 const About = () => {
   const handleMain = () => {
-    Router.push("/");
+    Router.push('/');
   };
 
   const handleToDo = () => {
-    Router.push("/todo");
+    Router.push('/todo');
   };
 
   return (
@@ -16,7 +16,7 @@ const About = () => {
       </h1>
 
       <button onClick={handleMain}>Main</button>
-      
+
       <button onClick={handleToDo}>ToDo</button>
     </div>
   );
