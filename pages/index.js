@@ -11,10 +11,11 @@ export default function Index() {
 
 Index.getLayout = function getLayout(page) {
   return (
-    <Layout>
-      <Sidebar />
-      
-      {page}
-    </Layout>
+    <div className="layout">
+      <Layout>
+        <Sidebar />
+        {page}
+      </Layout>
+    </div>
   );
 };

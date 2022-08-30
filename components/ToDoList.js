@@ -1,6 +1,6 @@
 const ToDoList = (props) => (
-  <div className="TodoList-container">
-    <ul className="TodoList">{props.children}</ul>
+  <div className="Todo-List">
+    <ul className="ToDo-List">{props.children}</ul>
   </div>
 );
 

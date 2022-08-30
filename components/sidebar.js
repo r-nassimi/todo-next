@@ -6,9 +6,11 @@ const Sidebar = () => (
     <Link href="/">
       <a>Home</a>
     </Link>
+
     <Link href="/todo">
       <a>To Do</a>
     </Link>
+    
     <Link href="/about">
       <a>About</a>
     </Link>

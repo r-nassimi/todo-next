@@ -1,12 +1,16 @@
 import Head from "next/head";
+import Sidebar from "./sidebar";
 
 const Layout = ({ children }) => (
-  <div>
+  <div className="Layout">
     <Head>
       <title>Layout example</title>
     </Head>
-    <main>{children}</main>
+
+    <Sidebar />
+
+    <main className="Main">{children}</main>
   </div>
-)
+);
 
 export default Layout;

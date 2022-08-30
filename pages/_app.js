@@ -1,8 +1,10 @@
+import Layout from "../components/layout";
 import "../global.css";
 
-const App = ({ Component, pageProps }) => {
-  const getLayout = Component.getLayout || ((page) => page);
-  return getLayout(<Component {...pageProps} />);
-};
+const App = ({ Component, pageProps }) => (
+  <Layout>
+    <Component {...pageProps} />
+  </Layout>
+);
 
 export default App;

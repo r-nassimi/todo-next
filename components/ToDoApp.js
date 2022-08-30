@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import Sidebar from "../components/sidebar";
 import ToDoForm from "./ToDoForm";
-import ToDoList from "./ToDoList";
+import ToDoList from "./ToDoList";  
+
+const liStyle = {
+    textDecorationLine: "line-through",
+    fontWeight: "100",
+    fontStyle: "italic",
+  };
 
 const ToDo = () => {
   const initialState = [];
@@ -28,11 +34,14 @@ const ToDo = () => {
     } else {
       const newArr = data.slice();
       const indexArr = newArr.map((arr) => arr.id);
+      console.log(indexArr, 11)
       const index = indexArr.indexOf(editId);
       newArr.splice(index, 1, { id: editId, text: task, completed: false });
       setData(newArr);
       setTask("");
       setEditId("");
+      
+      //Без него кнопки в зависимости от того редактируется или добавляется компонент не меняются
       setEditing(false);
     }
   };
@@ -88,12 +97,6 @@ const ToDo = () => {
     }
   }, [data]);
 
-  const liStyle = {
-    textDecorationLine: "line-through",
-    fontWeight: "100",
-    fontStyle: "italic",
-  };
-
   const TasksList = data.map((task) => (
     <li
       className="list"
@@ -112,7 +115,7 @@ const ToDo = () => {
   ));
 
   return (
-    <div>
+    <div className="Todo-list">
       <ToDoForm
         onSubmit={handleSubmit}
         value={task}
@@ -120,7 +123,7 @@ const ToDo = () => {
         onClick={!editing ? handleClear : handleCancel}
         editing={editing}
       />
-      
+
       <ToDoList>
         {data.length > 0 ? (
           TasksList
@@ -135,12 +138,3 @@ const ToDo = () => {
 };
 
 export default ToDo;
-
-ToDo.getLayout = function getLayout(page) {
-  return (
-    <Layout>
-      <Sidebar />
-      {page}
-    </Layout>
-  );
-};
