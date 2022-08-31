@@ -3,6 +3,9 @@ import ToDoForm from './ToDoForm';
 import ToDoList from './ToDoList';
 
 const liStyle = {
+  display: 'flex',
+  aligmItems: 'center',
+  justifyContent: 'center',
   textDecorationLine: 'line-through',
   fontWeight: '100',
   fontStyle: 'italic',
@@ -12,7 +15,7 @@ const ToDo = () => {
   const initialState = [];
   const [data, setData] = useState(initialState);
   const [task, setTask] = useState('');
-  const [editing, setEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState('');
 
   const handleChange = (e) => {
@@ -22,17 +25,16 @@ const ToDo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (task === '') return;
-    if (!editing) {
-      const newTaskArr = [
+    if (!isEditing) {
+      const newTasks = [
         ...data,
         { id: data.length + 1, text: task, completed: false },
       ];
-      setData(newTaskArr);
+      setData(newTasks);
       setTask('');
     } else {
       const newArr = data.slice();
-      const indexArr = newArr.map((arr) => arr.id);
-      console.log(indexArr, 11);
+      const indexArr = newArr.map((item) => item.id);
       const index = indexArr.indexOf(editId);
       newArr.splice(index, 1, { id: editId, text: task, completed: false });
       setData(newArr);
@@ -40,19 +42,19 @@ const ToDo = () => {
       setEditId('');
 
       //Без него кнопки в зависимости от того редактируется или добавляется компонент не меняются
-      setEditing(false);
+      setIsEditing(false);
     }
   };
 
   const handleEdit = (id) => {
     const item = data.find((task) => task.id === id);
     setTask(item.text);
-    setEditing(true);
+    setIsEditing(true);
     setEditId(item.id);
   };
 
   const handleCancel = () => {
-    setEditing(false);
+    setIsEditing(false);
     setTask('');
     setEditId('');
   };
@@ -67,19 +69,13 @@ const ToDo = () => {
   };
 
   const handleCheck = (text, id) => {
-    if (!data.find((data) => data.id === id).completed) {
-      const newArr = data.slice();
-      const indexArr = newArr.map((arr) => arr.id);
-      const index = indexArr.indexOf(id);
-      newArr.splice(index, 1, { id, text, completed: true });
-      setData(newArr);
-    } else {
-      const newArr = data.slice();
-      const indexArr = newArr.map((arr) => arr.id);
-      const index = indexArr.indexOf(id);
-      newArr.splice(index, 1, { id, text, completed: false });
-      setData(newArr);
-    }
+    const newArr = data.slice();
+    const indexArr = newArr.map((arr) => arr.id);
+    const index = indexArr.indexOf(id);
+    !data.find((data) => data.id === id).completed
+      ? newArr.splice(index, 1, { id, text, completed: true })
+      : newArr.splice(index, 1, { id, text, completed: false });
+    setData(newArr);
   };
 
   useEffect(() => {
@@ -113,13 +109,13 @@ const ToDo = () => {
   ));
 
   return (
-    <div className="Todo-list">
+    <div className="ToDoComponent">
       <ToDoForm
         onSubmit={handleSubmit}
         value={task}
         onChange={handleChange}
-        onClick={!editing ? handleClear : handleCancel}
-        editing={editing}
+        onClick={!isEditing ? handleClear : handleCancel}
+        isEditing={isEditing}
       />
 
       <ToDoList>
