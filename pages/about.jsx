@@ -10,10 +10,10 @@ const About = () => {
   };
 
   return (
-    <div>
-      <h1>
+    <div className="container">
+      <h3>
         This page was created just for presentation of opportunities next js
-      </h1>
+      </h3>
 
       <button onClick={handleMain}>Main</button>
 
